@@ -1,0 +1,6 @@
+/* Consolas font family with fallbacks for the Academic Planning wireframes */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* No need to import Consolas as it's a system font - we use inline font-family in components */
