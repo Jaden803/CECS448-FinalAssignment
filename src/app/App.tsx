@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+import { HashRouter, Routes, Route, Navigate } from 'react-router';
 import Dashboard from './pages/Dashboard';
 import DegreeRequirements from './pages/DegreeRequirements';
 import CoursePlanner from './pages/CoursePlanner';
@@ -16,7 +16,7 @@ import TutoringServices from './pages/TutoringServices';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="min-h-screen bg-[#f3f3f3]">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -36,6 +36,6 @@ export default function App() {
           <Route path="/tutoring-services" element={<TutoringServices />} />
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
