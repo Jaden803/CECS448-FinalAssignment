@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { User, ChevronUp, ChevronDown, Info } from 'lucide-react';
-import { NavigationMenu } from '../components/NavigationMenu';
+import { ChevronUp, ChevronDown, Info } from 'lucide-react';
+import { HeaderNavigation } from '../components/HeaderNavigation';
 
 type TabType = 'ge' | 'major' | 'electives';
 
@@ -22,15 +22,16 @@ export default function DegreeRequirements() {
   return (
     <div className="flex items-center justify-center min-h-screen p-4 md:p-8">
       <div className="w-full max-w-[375px] md:max-w-[768px] lg:max-w-[1024px] bg-white border-[3px] border-black shadow-[8px_8px_0px_rgba(0,0,0,0.15)]">
-        {/* Header */}
-        <div className="bg-[#f3f4f6] border-b-[3px] border-black px-4 py-3 flex items-center justify-between">
-          <NavigationMenu />
+        {/* Top Navigation Bar */}
+        <div className="sticky top-0 z-20 bg-[#f3f4f6] border-b-[3px] border-black px-4 py-3">
+          <HeaderNavigation />
+        </div>
+
+        {/* Page Header */}
+        <div className="sticky top-[51px] z-10 bg-white border-b-[3px] border-black px-4 py-4 text-center">
           <h2 className="font-['Consolas',monospace] font-bold text-[10px] tracking-[1px] uppercase">
             Degree Requirements
           </h2>
-          <button className="p-0">
-            <User size={24} strokeWidth={2.5} />
-          </button>
         </div>
 
         {/* Tabs */}
@@ -140,21 +141,82 @@ export default function DegreeRequirements() {
                         Critical Thinking
                       </span>
                     </div>
-                    <ChevronDown size={16} strokeWidth={1.33} />
+                    {expandedSections.has('critical-thinking') ? (
+                      <ChevronUp size={16} strokeWidth={1.33} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={1.33} />
+                    )}
                   </button>
+                  {expandedSections.has('critical-thinking') && (
+                    <div className="bg-[#f9fafb] border-t-2 border-black p-3">
+                      <div className="border-b border-black border-dashed pb-3 mb-3">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="font-['Inter',sans-serif] font-bold text-[12px] mb-0.5">
+                              Required Course:
+                            </div>
+                            <div className="font-['Inter',sans-serif] text-[12px]">
+                              PHIL 101 - Intro to Logic
+                            </div>
+                          </div>
+                          <div className="border border-black px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="font-['Inter',sans-serif] font-bold text-[8px] uppercase">
+                              3 Units
+                            </span>
+                            <Info size={10} strokeWidth={0.83} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-['Inter',sans-serif] text-[10px] text-[#364153]">
+                        Develop reasoning skills through formal and informal logic, argument analysis, and problem-solving.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Oral Communication */}
                 <div className="bg-white border-2 border-black opacity-60">
-                  <button className="w-full p-3 flex items-center justify-between">
+                  <button
+                    onClick={() => toggleSection('oral-communication')}
+                    className="w-full p-3 flex items-center justify-between hover:bg-[#fffbf0]"
+                  >
                     <div className="flex items-center gap-3">
                       <div className="w-4 h-4 bg-[#10b981]" />
                       <span className="font-['Consolas',monospace] font-bold text-[12px] tracking-[-0.3px] uppercase">
                         Oral Communication
                       </span>
                     </div>
-                    <ChevronDown size={16} strokeWidth={1.33} />
+                    {expandedSections.has('oral-communication') ? (
+                      <ChevronUp size={16} strokeWidth={1.33} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={1.33} />
+                    )}
                   </button>
+                  {expandedSections.has('oral-communication') && (
+                    <div className="bg-[#f9fafb] border-t-2 border-black p-3">
+                      <div className="border-b border-black border-dashed pb-3 mb-3">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="font-['Inter',sans-serif] font-bold text-[12px] mb-0.5">
+                              Completed Course:
+                            </div>
+                            <div className="font-['Inter',sans-serif] text-[12px]">
+                              COMM 101 - Public Speaking
+                            </div>
+                          </div>
+                          <div className="border border-black px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="font-['Inter',sans-serif] font-bold text-[8px] uppercase">
+                              3 Units
+                            </span>
+                            <Info size={10} strokeWidth={0.83} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-['Inter',sans-serif] text-[10px] text-[#364153]">
+                        Principles and practices of effective public speaking, including speech preparation and delivery.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </>
             )}
@@ -173,8 +235,37 @@ export default function DegreeRequirements() {
                         Data Structures
                       </span>
                     </div>
-                    <ChevronDown size={16} strokeWidth={1.33} />
+                    {expandedSections.has('data-structures') ? (
+                      <ChevronUp size={16} strokeWidth={1.33} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={1.33} />
+                    )}
                   </button>
+                  {expandedSections.has('data-structures') && (
+                    <div className="bg-[#f9fafb] border-t-2 border-black p-3">
+                      <div className="border-b border-black border-dashed pb-3 mb-3">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="font-['Inter',sans-serif] font-bold text-[12px] mb-0.5">
+                              Required Course:
+                            </div>
+                            <div className="font-['Inter',sans-serif] text-[12px]">
+                              CS 201 - Data Structures
+                            </div>
+                          </div>
+                          <div className="border border-black px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="font-['Inter',sans-serif] font-bold text-[8px] uppercase">
+                              4 Units
+                            </span>
+                            <Info size={10} strokeWidth={0.83} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-['Inter',sans-serif] text-[10px] text-[#364153]">
+                        Study of fundamental data structures including arrays, linked lists, stacks, queues, trees, and graphs.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Algorithms */}
@@ -189,21 +280,82 @@ export default function DegreeRequirements() {
                         Algorithms
                       </span>
                     </div>
-                    <ChevronDown size={16} strokeWidth={1.33} />
+                    {expandedSections.has('algorithms') ? (
+                      <ChevronUp size={16} strokeWidth={1.33} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={1.33} />
+                    )}
                   </button>
+                  {expandedSections.has('algorithms') && (
+                    <div className="bg-[#f9fafb] border-t-2 border-black p-3">
+                      <div className="border-b border-black border-dashed pb-3 mb-3">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="font-['Inter',sans-serif] font-bold text-[12px] mb-0.5">
+                              Required Course:
+                            </div>
+                            <div className="font-['Inter',sans-serif] text-[12px]">
+                              CS 301 - Algorithm Analysis
+                            </div>
+                          </div>
+                          <div className="border border-black px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="font-['Inter',sans-serif] font-bold text-[8px] uppercase">
+                              4 Units
+                            </span>
+                            <Info size={10} strokeWidth={0.83} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-['Inter',sans-serif] text-[10px] text-[#364153]">
+                        Design and analysis of computer algorithms including sorting, searching, and graph algorithms with complexity analysis.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Object-Oriented Programming */}
                 <div className="bg-white border-2 border-black opacity-60">
-                  <button className="w-full p-3 flex items-center justify-between">
+                  <button
+                    onClick={() => toggleSection('oop')}
+                    className="w-full p-3 flex items-center justify-between hover:bg-[#fffbf0]"
+                  >
                     <div className="flex items-center gap-3">
                       <div className="w-4 h-4 bg-[#10b981]" />
                       <span className="font-['Consolas',monospace] font-bold text-[12px] tracking-[-0.3px] uppercase">
                         Object-Oriented Programming
                       </span>
                     </div>
-                    <ChevronDown size={16} strokeWidth={1.33} />
+                    {expandedSections.has('oop') ? (
+                      <ChevronUp size={16} strokeWidth={1.33} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={1.33} />
+                    )}
                   </button>
+                  {expandedSections.has('oop') && (
+                    <div className="bg-[#f9fafb] border-t-2 border-black p-3">
+                      <div className="border-b border-black border-dashed pb-3 mb-3">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="font-['Inter',sans-serif] font-bold text-[12px] mb-0.5">
+                              Completed Course:
+                            </div>
+                            <div className="font-['Inter',sans-serif] text-[12px]">
+                              CS 150 - Object-Oriented Programming
+                            </div>
+                          </div>
+                          <div className="border border-black px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="font-['Inter',sans-serif] font-bold text-[8px] uppercase">
+                              4 Units
+                            </span>
+                            <Info size={10} strokeWidth={0.83} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-['Inter',sans-serif] text-[10px] text-[#364153]">
+                        Introduction to object-oriented design principles including encapsulation, inheritance, and polymorphism using Java.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </>
             )}
@@ -222,8 +374,37 @@ export default function DegreeRequirements() {
                         Web Development
                       </span>
                     </div>
-                    <ChevronDown size={16} strokeWidth={1.33} />
+                    {expandedSections.has('web-dev') ? (
+                      <ChevronUp size={16} strokeWidth={1.33} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={1.33} />
+                    )}
                   </button>
+                  {expandedSections.has('web-dev') && (
+                    <div className="bg-[#f9fafb] border-t-2 border-black p-3">
+                      <div className="border-b border-black border-dashed pb-3 mb-3">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="font-['Inter',sans-serif] font-bold text-[12px] mb-0.5">
+                              Elective Course:
+                            </div>
+                            <div className="font-['Inter',sans-serif] text-[12px]">
+                              CS 340 - Full Stack Web Development
+                            </div>
+                          </div>
+                          <div className="border border-black px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="font-['Inter',sans-serif] font-bold text-[8px] uppercase">
+                              3 Units
+                            </span>
+                            <Info size={10} strokeWidth={0.83} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-['Inter',sans-serif] text-[10px] text-[#364153]">
+                        Build modern web applications using front-end frameworks, back-end technologies, and databases.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Mobile App Development */}
@@ -238,8 +419,37 @@ export default function DegreeRequirements() {
                         Mobile App Development
                       </span>
                     </div>
-                    <ChevronDown size={16} strokeWidth={1.33} />
+                    {expandedSections.has('mobile-dev') ? (
+                      <ChevronUp size={16} strokeWidth={1.33} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={1.33} />
+                    )}
                   </button>
+                  {expandedSections.has('mobile-dev') && (
+                    <div className="bg-[#f9fafb] border-t-2 border-black p-3">
+                      <div className="border-b border-black border-dashed pb-3 mb-3">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="font-['Inter',sans-serif] font-bold text-[12px] mb-0.5">
+                              Elective Course:
+                            </div>
+                            <div className="font-['Inter',sans-serif] text-[12px]">
+                              CS 350 - Mobile Application Development
+                            </div>
+                          </div>
+                          <div className="border border-black px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="font-['Inter',sans-serif] font-bold text-[8px] uppercase">
+                              3 Units
+                            </span>
+                            <Info size={10} strokeWidth={0.83} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-['Inter',sans-serif] text-[10px] text-[#364153]">
+                        Design and develop native and cross-platform mobile applications for iOS and Android devices.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Artificial Intelligence */}
@@ -254,8 +464,37 @@ export default function DegreeRequirements() {
                         Artificial Intelligence
                       </span>
                     </div>
-                    <ChevronDown size={16} strokeWidth={1.33} />
+                    {expandedSections.has('ai') ? (
+                      <ChevronUp size={16} strokeWidth={1.33} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={1.33} />
+                    )}
                   </button>
+                  {expandedSections.has('ai') && (
+                    <div className="bg-[#f9fafb] border-t-2 border-black p-3">
+                      <div className="border-b border-black border-dashed pb-3 mb-3">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="font-['Inter',sans-serif] font-bold text-[12px] mb-0.5">
+                              Elective Course:
+                            </div>
+                            <div className="font-['Inter',sans-serif] text-[12px]">
+                              CS 420 - Introduction to AI
+                            </div>
+                          </div>
+                          <div className="border border-black px-1.5 py-0.5 flex items-center gap-1">
+                            <span className="font-['Inter',sans-serif] font-bold text-[8px] uppercase">
+                              3 Units
+                            </span>
+                            <Info size={10} strokeWidth={0.83} />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="font-['Inter',sans-serif] text-[10px] text-[#364153]">
+                        Explore machine learning, neural networks, natural language processing, and intelligent agent design.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </>
             )}

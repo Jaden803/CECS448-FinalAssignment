@@ -1,18 +1,18 @@
-import { HashRouter, Routes, Route, Navigate } from 'react-router';
-import Dashboard from './pages/Dashboard';
-import DegreeRequirements from './pages/DegreeRequirements';
-import CoursePlanner from './pages/CoursePlanner';
-import SemesterBuilder from './pages/SemesterBuilder';
-import Glossary from './pages/Glossary';
-import PastDueAlert from './pages/PastDueAlert';
-import ErrorRecovery from './pages/ErrorRecovery';
-import AdvisorSharing from './pages/AdvisorSharing';
-import PaymentOptions from './pages/PaymentOptions';
-import FinancialAidFAQ from './pages/FinancialAidFAQ';
-import ChooseDifferentCourse from './pages/ChooseDifferentCourse';
-import Notifications from './pages/Notifications';
-import SemesterReview from './pages/SemesterReview';
-import TutoringServices from './pages/TutoringServices';
+import { HashRouter, Routes, Route, Navigate } from "react-router";
+import Dashboard from "./pages/Dashboard";
+import DegreeRequirements from "./pages/DegreeRequirements";
+import CoursePlanner from "./pages/CoursePlanner";
+import SemesterBuilder from "./pages/SemesterBuilder";
+import Glossary from "./pages/Glossary";
+import PastDueAlert from "./pages/PastDueAlert";
+import ErrorRecovery from "./pages/ErrorRecovery";
+import AdvisorSharing from "./pages/AdvisorSharing";
+import PaymentOptions from "./pages/PaymentOptions";
+import FinancialAidFAQ from "./pages/FinancialAidFAQ";
+import ChooseDifferentCourse from "./pages/ChooseDifferentCourse";
+import Notifications from "./pages/Notifications";
+import SemesterReview from "./pages/SemesterReview";
+import TutoringServices from "./pages/TutoringServices";
 
 export default function App() {
   return (
@@ -30,7 +30,10 @@ export default function App() {
           <Route path="/payment-options" element={<PaymentOptions />} />
           <Route path="/financial-aid-faq" element={<FinancialAidFAQ />} />
           <Route path="/error-recovery" element={<ErrorRecovery />} />
-          <Route path="/choose-different-course" element={<ChooseDifferentCourse />} />
+          <Route
+            path="/choose-different-course"
+            element={<ChooseDifferentCourse />}
+          />
           <Route path="/advisor-sharing" element={<AdvisorSharing />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/tutoring-services" element={<TutoringServices />} />

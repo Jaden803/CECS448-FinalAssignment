@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
-import { User, GripVertical, X, AlertTriangle, Send, ArrowRight } from 'lucide-react';
-import { NavigationMenu } from '../components/NavigationMenu';
+import { GripVertical, X, AlertTriangle, Send, ArrowRight } from 'lucide-react';
+import { HeaderNavigation } from '../components/HeaderNavigation';
 
 interface Course {
   id: string;
@@ -44,15 +44,16 @@ export default function SemesterBuilder() {
   return (
     <div className="flex items-center justify-center min-h-screen p-4 md:p-8">
       <div className="w-full max-w-[375px] md:max-w-[768px] lg:max-w-[1024px] bg-white border-[3px] border-black shadow-[8px_8px_0px_rgba(0,0,0,0.15)]">
-        {/* Header */}
-        <div className="bg-[#f3f4f6] border-b-[3px] border-black px-4 py-3 flex items-center justify-between">
-          <NavigationMenu />
+        {/* Top Navigation Bar */}
+        <div className="sticky top-0 z-20 bg-[#f3f4f6] border-b-[3px] border-black px-4 py-3">
+          <HeaderNavigation />
+        </div>
+
+        {/* Page Header */}
+        <div className="sticky top-[51px] z-10 bg-white border-b-[3px] border-black px-4 py-4 text-center">
           <h2 className="font-['Consolas',monospace] font-bold text-[10px] tracking-[1px] uppercase">
             Semester Builder
           </h2>
-          <button className="p-0">
-            <User size={24} strokeWidth={2.5} />
-          </button>
         </div>
 
         {/* Content */}
